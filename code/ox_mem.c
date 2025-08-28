@@ -1,4 +1,4 @@
-#include "ox_memory.h"
+#include "ox_mem.h"
 
 #include "ox_core.h"
 #include "ox_log.h"
@@ -15,7 +15,7 @@ static mtx_t mem_mtx;
 static ox_list_head_t mem_allocs;
 #endif
 
-long ox_memory_init(void)
+long ox_mem_init(void)
 {
 #ifdef OX_DEBUG_BUILD
   if (mtx_init(&mem_mtx, mtx_plain) != thrd_success) {
@@ -26,7 +26,7 @@ long ox_memory_init(void)
   return OX_SUCCESS;
 }
 
-void ox_memory_exit(void)
+void ox_mem_exit(void)
 {
 #ifdef OX_DEBUG_BUILD
   ox_list_entry_t* entry;
@@ -47,7 +47,8 @@ void ox_memory_exit(void)
 #endif
 }
 
-void* ox_malloc(const size_t size, const ox_source_location_t source_location)
+void* ox_mem_acquire(const size_t size,
+                     const ox_source_location_t source_location)
 {
 #if OX_DEBUG_BUILD
   // ReSharper disable once CppDFAMemoryLeak
@@ -69,29 +70,29 @@ void* ox_malloc(const size_t size, const ox_source_location_t source_location)
 #endif
 }
 
-void* ox_realloc(void* memory, const size_t size,
-                 const ox_source_location_t source_location)
+void* ox_mem_reclaim(void* mem, const size_t size,
+                     const ox_source_location_t source_location)
 {
 #if OX_DEBUG_BUILD
   ox_memory_header_t* header =
-    (ox_memory_header_t*)((char*)memory - sizeof(ox_memory_header_t));
+    (ox_memory_header_t*)((char*)mem - sizeof(ox_memory_header_t));
   header->source_location = source_location;
   header->buffer_size = size;
-  return realloc(memory, size + sizeof(ox_memory_header_t));
+  return realloc(mem, size + sizeof(ox_memory_header_t));
 #else
   (void)source_location;
-  return realloc(memory, size);
+  return realloc(mem, size);
 #endif
 }
 
-void ox_free(void* memory)
+void ox_mem_release(void* mem)
 {
 #if OX_DEBUG_BUILD
   ox_memory_header_t* header =
-    (ox_memory_header_t*)((char*)memory - sizeof(ox_memory_header_t));
+    (ox_memory_header_t*)((char*)mem - sizeof(ox_memory_header_t));
   ox_list_remove(&header->link);
   free(header);
 #else
-  free(memory);
+  free(mem);
 #endif
 }

@@ -1,6 +1,6 @@
 #include "ox_core.h"
 #include "ox_log.h"
-#include "ox_memory.h"
+#include "ox_mem.h"
 
 #include <stdio.h>
 
@@ -11,7 +11,7 @@ typedef struct {
 } ox_system;
 
 static ox_system systems[] = {
-  { ox_memory_init, ox_memory_exit, "Memory" },
+  { ox_mem_init, ox_mem_exit, "Memory" },
 };
 
 static void systems_exit_starting_from(const int index)

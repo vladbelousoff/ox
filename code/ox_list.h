@@ -12,7 +12,7 @@
  * @param field The name of the list_entry within the struct.
  * @return A pointer to the containing structure.
  */
-#define ox_list_offset(address, type, field)                                   \
+#define OX_LIST_OFFSET(address, type, field)                                   \
   ((type*)((char*)(address) - (char*)(&((type*)0)->field)))
 
 /**
@@ -20,7 +20,7 @@
  * @param position The &struct ox_list_entry to use as a loop cursor.
  * @param head The head for your list.
  */
-#define ox_list_for_each(position, head)                                       \
+#define OX_LIST_FOR_EACH(position, head)                                       \
   for (position = (head)->next; position != head; position = position->next)
 
 /**
@@ -29,7 +29,7 @@
  * @param n Another &struct ox_list_entry to use as temporary storage.
  * @param head The head for your list.
  */
-#define ox_list_for_each_safe(position, n, head)                               \
+#define OX_LIST_FOR_EACH_SAFE(position, n, head)                               \
   for (position = (head)->next, n = position->next; position != (head);        \
        position = n, n = position->next)
 

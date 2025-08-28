@@ -1,4 +1,8 @@
 #pragma once
 
+// Error codes
+#define OX_SUCCESS 0
+#define OX_FAILURE 1
+
 #define OX_ARRAY_SIZE(x)                                                       \
   _Generic(&(x), __typeof__(&(x)): (sizeof(x) / sizeof((x)[0])))

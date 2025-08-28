@@ -1,5 +1,6 @@
 #include "ox_memory.h"
 
+#include "ox_core.h"
 #include "ox_log.h"
 
 #include <stdio.h>
@@ -18,11 +19,11 @@ long ox_memory_init(void)
 {
 #ifdef OX_DEBUG_BUILD
   if (mtx_init(&mem_mtx, mtx_plain) != thrd_success) {
-    return 1;
+    return OX_FAILURE;
   }
   ox_list_init(&mem_allocs);
 #endif
-  return 0;
+  return OX_SUCCESS;
 }
 
 void ox_memory_exit(void)
@@ -30,13 +31,14 @@ void ox_memory_exit(void)
 #ifdef OX_DEBUG_BUILD
   ox_list_entry_t* entry;
   ox_list_entry_t* tmp;
-  ox_list_for_each_safe(entry, tmp, &mem_allocs)
+  OX_LIST_FOR_EACH_SAFE(entry, tmp, &mem_allocs)
   {
     ox_memory_header_t* header =
-      ox_list_offset(entry, ox_memory_header_t, link);
-    ox_log_err("Leaked memory, file: %s, line: %llu, size: %llu",
+      OX_LIST_OFFSET(entry, ox_memory_header_t, link);
+    OX_LOG_ERR("Leaked memory, file: %s, line: %u, size: %u",
                ox_filename(header->source_location.file),
-               header->source_location.line, header->buffer_size);
+               (unsigned)header->source_location.line,
+               (unsigned)header->buffer_size);
     ox_list_remove(&header->link);
     free(header);
   }

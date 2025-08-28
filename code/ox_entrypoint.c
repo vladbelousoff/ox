@@ -17,7 +17,7 @@ static ox_system systems[] = {
 static void systems_exit_starting_from(const int index)
 {
   for (int i = index; i >= 0; --i) {
-    ox_log_dbg("Exit system '%s'", systems[i].name);
+    OX_LOG_DBG("Exit system '%s'", systems[i].name);
     systems[i].free();
   }
 }
@@ -25,8 +25,8 @@ static void systems_exit_starting_from(const int index)
 static long systems_init(void)
 {
   for (int i = 0; i < OX_ARRAY_SIZE(systems); ++i) {
-    ox_log_dbg("Init system '%s'", systems[i].name);
-    if (systems[i].init() != 0) {
+    OX_LOG_DBG("Init system '%s'", systems[i].name);
+    if (systems[i].init() != OX_SUCCESS) {
       systems_exit_starting_from(i - 1);
       return 1;
     }
@@ -42,8 +42,11 @@ static void systems_exit(void)
 
 int main(void)
 {
-  systems_init();
-  systems_exit();
+  const long ret_code = systems_init();
+  if (ret_code != OX_SUCCESS) {
+    return ret_code;
+  }
 
+  systems_exit();
   return 0;
 }

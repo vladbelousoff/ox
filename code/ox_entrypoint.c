@@ -44,7 +44,7 @@ int main(void)
 {
   const long ret_code = systems_init();
   if (ret_code != OX_SUCCESS) {
-    return ret_code;
+    return (int)ret_code;
   }
 
   systems_exit();

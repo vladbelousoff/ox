@@ -271,8 +271,7 @@ int main(void)
     ClearBackground(BLACK);
 
     for (int i = 0; i < number_of_balls; ++i) {
-      DrawCircle((int)ball_positions[i].x, (int)ball_positions[i].y,
-                 ball_radius, ball_colors[i]);
+      DrawCircleV(ball_positions[i], ball_radius, ball_colors[i]);
     }
 
     // Optional: Draw grid for debugging

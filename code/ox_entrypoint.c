@@ -8,25 +8,25 @@ typedef struct {
   long (*init)(void);
   void (*free)(void);
   const char* name;
-} ox_system_t;
+} ox_subsystem_t;
 
-static ox_system_t systems[] = {
+static ox_subsystem_t subsystems[] = {
   { ox_mem_init, ox_mem_exit, "Memory" },
 };
 
 static void systems_exit_starting_from(const int index)
 {
   for (int i = index; i >= 0; --i) {
-    OX_LOG_DBG("Exit system '%s'", systems[i].name);
-    systems[i].free();
+    OX_LOG_DBG("Exit system '%s'", subsystems[i].name);
+    subsystems[i].free();
   }
 }
 
 static long systems_init(void)
 {
-  for (int i = 0; i < OX_ARRAY_SIZE(systems); ++i) {
-    OX_LOG_DBG("Init system '%s'", systems[i].name);
-    if (systems[i].init() != OX_SUCCESS) {
+  for (int i = 0; i < OX_ARRAY_SIZE(subsystems); ++i) {
+    OX_LOG_DBG("Init system '%s'", subsystems[i].name);
+    if (subsystems[i].init() != OX_SUCCESS) {
       systems_exit_starting_from(i - 1);
       return 1;
     }
@@ -37,7 +37,7 @@ static long systems_init(void)
 
 static void systems_exit(void)
 {
-  systems_exit_starting_from(OX_ARRAY_SIZE(systems) - 1);
+  systems_exit_starting_from(OX_ARRAY_SIZE(subsystems) - 1);
 }
 
 int main(void)

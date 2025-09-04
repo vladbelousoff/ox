@@ -263,16 +263,6 @@ int main(void)
                                       ball_directions, ball_radius, false);
           }
         }
-
-        // Check down-left cell (diagonal)
-        if (cell_x - 1 >= 0 && cell_y + 1 < grid_height) {
-          const int down_left_cell = (cell_y + 1) * grid_width + (cell_x - 1);
-          if (grid[current_cell].count > 0 && grid[down_left_cell].count > 0) {
-            check_collisions_in_cells(&grid[current_cell],
-                                      &grid[down_left_cell], ball_positions,
-                                      ball_directions, ball_radius, false);
-          }
-        }
       }
     }
 

@@ -4,7 +4,7 @@
 
 long ox_render_init(void)
 {
-  InitWindow(800, 600, "OX");
+  InitWindow(1920, 1080, "OX");
   SetTargetFPS(60);
 
   return 0;

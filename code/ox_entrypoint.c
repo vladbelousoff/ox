@@ -53,7 +53,7 @@ int main(void)
   while (!WindowShouldClose()) {
     BeginDrawing();
     ClearBackground(BLACK);
-    DrawText("Hello, OX!", 190, 200, 20, LIGHTGRAY);
+    DrawText("Hello, OX!", 10, 10, 42, LIGHTGRAY);
     EndDrawing();
   }
 

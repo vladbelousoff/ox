@@ -8,9 +8,9 @@ typedef struct {
   long (*init)(void);
   void (*free)(void);
   const char* name;
-} ox_system;
+} ox_system_t;
 
-static ox_system systems[] = {
+static ox_system_t systems[] = {
   { ox_mem_init, ox_mem_exit, "Memory" },
 };
 

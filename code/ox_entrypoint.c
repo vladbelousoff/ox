@@ -1,6 +1,8 @@
 #include "ox_core.h"
 #include "ox_log.h"
 #include "ox_mem.h"
+#include "ox_render.h"
+#include "raylib.h"
 
 #include <stdio.h>
 
@@ -12,6 +14,7 @@ typedef struct {
 
 static ox_subsystem_t subsystems[] = {
   { ox_mem_init, ox_mem_exit, "Memory" },
+  { ox_render_init, ox_render_exit, "Render" },
 };
 
 static void systems_exit_starting_from(const int index)
@@ -45,6 +48,13 @@ int main(void)
   const long ret_code = systems_init();
   if (ret_code != OX_SUCCESS) {
     return (int)ret_code;
+  }
+
+  while (!WindowShouldClose()) {
+    BeginDrawing();
+    ClearBackground(BLACK);
+    DrawText("Hello, OX!", 190, 200, 20, LIGHTGRAY);
+    EndDrawing();
   }
 
   systems_exit();

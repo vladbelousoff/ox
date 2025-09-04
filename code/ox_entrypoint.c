@@ -1,6 +1,6 @@
 #include "ox_core.h"
 #include "ox_log.h"
-#include "ox_mem.h"
+#include "ox_memory.h"
 #include "ox_render.h"
 #include "raylib.h"
 
@@ -13,7 +13,7 @@ typedef struct {
 } ox_subsystem_t;
 
 static ox_subsystem_t subsystems[] = {
-  { ox_mem_init, ox_mem_exit, "Memory" },
+  { ox_memory_init, ox_memory_exit, "Memory" },
   { ox_render_init, ox_render_exit, "Render" },
 };
 

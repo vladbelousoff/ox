@@ -1,4 +1,4 @@
-#include "ox_mem.h"
+#include "ox_memory.h"
 
 #include "ox_core.h"
 #include "ox_log.h"
@@ -15,7 +15,7 @@ static mtx_t mem_mtx;
 static ox_list_head_t mem_allocs;
 #endif
 
-long ox_mem_init(void)
+long ox_memory_init(void)
 {
 #ifdef OX_DEBUG_BUILD
   if (mtx_init(&mem_mtx, mtx_plain) != thrd_success) {
@@ -26,7 +26,7 @@ long ox_mem_init(void)
   return OX_SUCCESS;
 }
 
-void ox_mem_exit(void)
+void ox_memory_exit(void)
 {
 #ifdef OX_DEBUG_BUILD
   ox_list_entry_t* entry;

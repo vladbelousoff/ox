@@ -41,7 +41,7 @@ typedef int ox_source_location_t;
  * 
  * @return 0 on success, negative value on failure
  */
-long ox_mem_init(void);
+long ox_memory_init(void);
 
 /**
  * @brief Clean up the memory management system
@@ -53,7 +53,7 @@ long ox_mem_init(void);
  * In debug builds, this function will also report any memory leaks
  * that occurred during program execution.
  */
-void ox_mem_exit(void);
+void ox_memory_exit(void);
 
 /**
  * @brief Allocate memory with source location tracking

@@ -2,6 +2,10 @@
 
 #include <stddef.h>
 
+#ifdef OX_DEBUG_BUILD
+#include <stdio.h>
+#endif
+
 void ox_timestamp(char* stamp, size_t stamp_size);
 const char* ox_filename(const char* filename);
 

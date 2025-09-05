@@ -90,7 +90,7 @@ void resolve_collision(Vector2* pos1, Vector2* pos2, Vector2* vel1,
     delta.y /= distance;
 
     // Separate overlapping balls
-    const float overlap = (radius1 + radius2) - distance;
+    const float overlap = radius_sum - distance;
     pos1->x += delta.x * overlap * 0.5f;
     pos1->y += delta.y * overlap * 0.5f;
     pos2->x -= delta.x * overlap * 0.5f;

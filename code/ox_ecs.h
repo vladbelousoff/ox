@@ -47,7 +47,7 @@ typedef struct {
 } ox_component_info_t;
 
 typedef struct {
-  // ox_component_info_t components[OX_COMPONENT_MASK_BIT_ARRAY_SIZE];
+  ox_component_info_t components[OX_COMPONENTS_MAX];
   size_t component_count;
   bitset_t* all_components_mask;
 } ox_component_registry_t;

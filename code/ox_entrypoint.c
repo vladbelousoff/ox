@@ -282,6 +282,8 @@ int main(void)
       DrawLine(0, y, GetScreenWidth(), y, DARKGRAY);
     }
 
+    DrawText(TextFormat("FPS: %i", GetFPS()), 10, 10, 20, WHITE);
+
     EndDrawing();
   }
 

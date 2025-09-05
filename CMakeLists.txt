@@ -35,6 +35,7 @@ FetchContent_MakeAvailable(
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE
         $<$<CONFIG:Debug>:OX_DEBUG_BUILD>
+        $<$<CONFIG:RelWithDebInfo>:OX_DEBUG_BUILD>
         $<$<PLATFORM_ID:Windows>:_CRT_SECURE_NO_WARNINGS>
 )
 

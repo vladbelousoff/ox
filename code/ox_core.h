@@ -11,3 +11,5 @@
   typedef struct {                                                             \
     int value;                                                                 \
   } name
+
+#define OX_SIZEOF_IN_BITS(x) (sizeof(x) * CHAR_BIT)

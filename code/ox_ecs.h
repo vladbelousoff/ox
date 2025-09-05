@@ -15,7 +15,7 @@
 #define OX_ECS_POOL_MAX_CHUNKS         128
 
 #define OX_ENTITY_USER_DATA_BITS                                               \
-  (sizeof(uint64_t) * 8 - OX_ENTITY_NONCE_BITS - OX_ENTITY_INDEX_BITS)
+  (OX_SIZEOF_IN_BITS(uint64_t) - OX_ENTITY_NONCE_BITS - OX_ENTITY_INDEX_BITS)
 
 OX_DECLARE_ID(ox_component_id);
 OX_DECLARE_ID(ox_query_id);

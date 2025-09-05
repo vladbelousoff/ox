@@ -282,11 +282,12 @@ int main(void)
     for (int x = 0; x <= GetScreenWidth(); x += GRID_SIZE) {
       DrawLine(x, 0, x, GetScreenHeight(), DARKGRAY);
     }
+
     for (int y = 0; y <= GetScreenHeight(); y += GRID_SIZE) {
       DrawLine(0, y, GetScreenWidth(), y, DARKGRAY);
     }
 
-    DrawText(TextFormat("FPS: %i", GetFPS()), 10, 10, 20, WHITE);
+    DrawText(TextFormat("FPS: %d", GetFPS()), 10, 10, 20, WHITE);
 
     EndDrawing();
   }

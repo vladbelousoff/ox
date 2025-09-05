@@ -8,6 +8,8 @@
 
 #define GRID_SIZE          50
 #define MAX_BALLS_PER_CELL 10
+#define NUMBER_OF_BALLS    500
+#define BALL_RADIUS        10.f
 
 typedef struct {
   long (*init)(void);
@@ -78,10 +80,12 @@ void resolve_collision(Vector2* pos1, Vector2* pos2, Vector2* vel1,
 {
   // Calculate collision vector
   Vector2 delta = { pos1->x - pos2->x, pos1->y - pos2->y };
-  const float distance = sqrtf(delta.x * delta.x + delta.y * delta.y);
+  const float distance2 = delta.x * delta.x + delta.y * delta.y;
+  const float radius_sum = radius1 + radius2;
 
-  if (distance < radius1 + radius2 && distance > 0.0f) {
+  if (distance2 < radius_sum * radius_sum && distance2 > 0.0f) {
     // Normalize collision vector
+    const float distance = sqrtf(distance2);
     delta.x /= distance;
     delta.y /= distance;
 
@@ -150,8 +154,8 @@ int main(void)
     return (int)ret_code;
   }
 
-  const int number_of_balls = 1000;
-  const float ball_radius = 10.0f;
+  static const int number_of_balls = NUMBER_OF_BALLS;
+  static const float ball_radius = BALL_RADIUS;
 
   Vector2* ball_positions =
     ox_mem_acquire(sizeof(Vector2) * number_of_balls, OX_SOURCE_LOCATION);
@@ -291,6 +295,7 @@ int main(void)
   for (int i = 0; i < total_cells; ++i) {
     ox_mem_release(grid[i].ball_indices);
   }
+
   ox_mem_release(grid);
   ox_mem_release(ball_positions);
   ox_mem_release(ball_directions);

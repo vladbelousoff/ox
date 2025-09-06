@@ -1,5 +1,7 @@
 #pragma once
 
+#include <limits.h>
+
 // Error codes
 #define OX_SUCCESS 0
 #define OX_FAILURE 1

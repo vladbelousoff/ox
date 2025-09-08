@@ -28,10 +28,25 @@ FetchContent_Declare(
         FIND_PACKAGE_ARGS ${BITSET_VERSION}
 )
 
+FetchContent_Declare(
+        microui
+        GIT_REPOSITORY https://github.com/rxi/microui.git
+        GIT_TAG master
+)
+
 FetchContent_MakeAvailable(
         raylib
         bitset
+        microui
 )
+
+if (NOT TARGET microui)
+    add_library(microui STATIC
+            ${microui_SOURCE_DIR}/src/microui.c
+            ${microui_SOURCE_DIR}/src/microui.h
+    )
+    target_include_directories(microui PUBLIC ${microui_SOURCE_DIR}/src)
+endif()
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE
         $<$<CONFIG:Debug>:OX_DEBUG_BUILD>
@@ -42,4 +57,5 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
 target_link_libraries(${PROJECT_NAME} PRIVATE
         raylib
         cbitset
+        microui
 )

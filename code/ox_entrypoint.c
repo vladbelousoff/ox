@@ -2,9 +2,10 @@
 #include "ox_log.h"
 #include "ox_memory.h"
 #include "ox_render.h"
-#include "raylib.h"
+#include "ox_ui.h"
 
 #include <math.h>
+#include <raylib.h>
 
 #define GRID_SIZE          50
 #define MAX_BALLS_PER_CELL 10
@@ -26,6 +27,7 @@ typedef struct {
 static ox_subsystem_t subsystems[] = {
   { ox_memory_init, ox_memory_exit, "Memory" },
   { ox_render_init, ox_render_exit, "Render" },
+  { ox_ui_init, ox_ui_exit, "UI" },
 };
 
 static void systems_exit_starting_from(const int index)
@@ -270,6 +272,8 @@ int main(void)
       }
     }
 
+    ox_ui_update();
+
     // Render
     BeginDrawing();
     ClearBackground(BLACK);
@@ -288,6 +292,7 @@ int main(void)
     }
 
     DrawText(TextFormat("FPS: %d", GetFPS()), 10, 10, 20, WHITE);
+    ox_ui_render();
 
     EndDrawing();
   }

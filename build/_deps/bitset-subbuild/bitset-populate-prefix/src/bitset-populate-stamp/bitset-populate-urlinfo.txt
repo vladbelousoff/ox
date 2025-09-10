@@ -1,0 +1,12 @@
+# This is a generated file and its contents are an internal implementation detail.
+# The download step will be re-executed if anything in this file changes.
+# No other meaning or use of this file is supported.
+
+method=url
+command=/usr/bin/cmake;-DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE;-P;/workspace/build/_deps/bitset-subbuild/bitset-populate-prefix/src/bitset-populate-stamp/download-bitset-populate.cmake;COMMAND;/usr/bin/cmake;-DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE;-P;/workspace/build/_deps/bitset-subbuild/bitset-populate-prefix/src/bitset-populate-stamp/verify-bitset-populate.cmake;COMMAND;/usr/bin/cmake;-DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE;-P;/workspace/build/_deps/bitset-subbuild/bitset-populate-prefix/src/bitset-populate-stamp/extract-bitset-populate.cmake
+source_dir=/workspace/build/_deps/bitset-src
+work_dir=/workspace/build/_deps
+url(s)=https://github.com/lemire/cbitset/archive/refs/tags/v0.2.2.tar.gz
+hash=
+      no_extract=
+

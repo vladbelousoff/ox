@@ -97,3 +97,17 @@ typedef struct {
   size_t entities_count;
   size_t entities_capacity;
 } ox_world_t;
+
+// Function declarations
+void ox_component_registry_term(ox_component_registry_t* registry);
+ox_component_id ox_component_registry_register(ox_component_registry_t* registry, 
+                                              const char* name, 
+                                              size_t size);
+
+// Memory pool functions
+void ox_memory_pool_init(ox_memory_pool_t* pool, size_t element_size, size_t elements_per_chunk);
+void ox_memory_pool_term(ox_memory_pool_t* pool);
+
+// World functions
+void ox_world_init(ox_world_t* world);
+void ox_world_term(ox_world_t* world);

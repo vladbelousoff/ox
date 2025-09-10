@@ -1,0 +1,1 @@
+/usr/bin/cc -O3 -DNDEBUG -Xlinker --dependency-file=CMakeFiles/unit.dir/link.d CMakeFiles/unit.dir/unit.c.o -o unit  ../src/libcbitset.a

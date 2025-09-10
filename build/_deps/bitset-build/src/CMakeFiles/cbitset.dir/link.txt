@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcbitset.a CMakeFiles/cbitset.dir/bitset.c.o
+/usr/bin/ranlib libcbitset.a

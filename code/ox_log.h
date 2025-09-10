@@ -23,6 +23,9 @@ const char* ox_filename(const char* filename);
 #define OX_LOG_ERR(_fmt, ...)                                                  \
   OX_LOG("ERR", OX_FILENAME, __LINE__, __FUNCTION__, _fmt, ##__VA_ARGS__)
 
+#define OX_LOG_INFO(_fmt, ...)                                                 \
+  OX_LOG("INFO", OX_FILENAME, __LINE__, __FUNCTION__, _fmt, ##__VA_ARGS__)
+
 #ifdef OX_DEBUG_BUILD
 #define OX_LOG_WRN(_fmt, ...)                                                  \
   OX_LOG("WRN", OX_FILENAME, __LINE__, __FUNCTION__, _fmt, ##__VA_ARGS__)

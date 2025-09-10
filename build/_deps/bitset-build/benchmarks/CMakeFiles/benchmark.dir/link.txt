@@ -1,0 +1,1 @@
+/usr/bin/cc -O3 -DNDEBUG -Xlinker --dependency-file=CMakeFiles/benchmark.dir/link.d CMakeFiles/benchmark.dir/benchmark.c.o -o benchmark  ../src/libcbitset.a

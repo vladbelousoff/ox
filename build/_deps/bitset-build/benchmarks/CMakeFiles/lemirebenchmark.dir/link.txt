@@ -1,0 +1,1 @@
+/usr/bin/cc -O3 -DNDEBUG -Xlinker --dependency-file=CMakeFiles/lemirebenchmark.dir/link.d CMakeFiles/lemirebenchmark.dir/benchmark.c.o -o lemirebenchmark  ../src/libcbitset.a

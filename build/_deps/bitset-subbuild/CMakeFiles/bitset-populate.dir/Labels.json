@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/workspace/build/_deps/bitset-subbuild/CMakeFiles/bitset-populate"
+		},
+		{
+			"file" : "/workspace/build/_deps/bitset-subbuild/CMakeFiles/bitset-populate.rule"
+		},
+		{
+			"file" : "/workspace/build/_deps/bitset-subbuild/CMakeFiles/bitset-populate-complete.rule"
+		},
+		{
+			"file" : "/workspace/build/_deps/bitset-subbuild/bitset-populate-prefix/src/bitset-populate-stamp/bitset-populate-build.rule"
+		},
+		{
+			"file" : "/workspace/build/_deps/bitset-subbuild/bitset-populate-prefix/src/bitset-populate-stamp/bitset-populate-configure.rule"
+		},
+		{
+			"file" : "/workspace/build/_deps/bitset-subbuild/bitset-populate-prefix/src/bitset-populate-stamp/bitset-populate-download.rule"
+		},
+		{
+			"file" : "/workspace/build/_deps/bitset-subbuild/bitset-populate-prefix/src/bitset-populate-stamp/bitset-populate-install.rule"
+		},
+		{
+			"file" : "/workspace/build/_deps/bitset-subbuild/bitset-populate-prefix/src/bitset-populate-stamp/bitset-populate-mkdir.rule"
+		},
+		{
+			"file" : "/workspace/build/_deps/bitset-subbuild/bitset-populate-prefix/src/bitset-populate-stamp/bitset-populate-patch.rule"
+		},
+		{
+			"file" : "/workspace/build/_deps/bitset-subbuild/bitset-populate-prefix/src/bitset-populate-stamp/bitset-populate-test.rule"
+		},
+		{
+			"file" : "/workspace/build/_deps/bitset-subbuild/bitset-populate-prefix/src/bitset-populate-stamp/bitset-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"bitset-populate"
+		],
+		"name" : "bitset-populate"
+	}
+}

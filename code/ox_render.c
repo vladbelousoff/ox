@@ -16,6 +16,7 @@ long ox_render_init(void)
   // Try to load a system font first (common monospace fonts)
   static const char* font_paths[] = {
     "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf",
+    "/usr/share/fonts/TTF/Hack-Regular.ttf",
     "/usr/share/fonts/TTF/DejaVuSansMono.ttf",
     "/System/Library/Fonts/Monaco.ttf", // macOS
     "C:/Windows/Fonts/consola.ttf",     // Windows
@@ -25,7 +26,8 @@ long ox_render_init(void)
   current_font = (Font){ 0 };
   for (int i = 0; i < 4; ++i) {
     if (FileExists(font_paths[i])) {
-      current_font = LoadFontEx(font_paths[i], 36, 0, 250);
+      current_font =
+        LoadFontEx(font_paths[i], ox_render_get_font_size(), 0, 250);
       if (current_font.texture.id != 0) {
         break;
       }
@@ -57,12 +59,16 @@ Font ox_render_get_default_font(void)
 
 Font ox_render_get_current_font(void)
 {
-  return current_font;
+  return font_loaded ? current_font : GetFontDefault();
 }
 
-void ox_render_set_font(Font font)
+int ox_render_get_font_size(void)
 {
-  // Unload previous font if it's not the default
+  return 24;
+}
+
+void ox_render_set_font(const Font font)
+{
   if (font_loaded && current_font.texture.id != GetFontDefault().texture.id) {
     UnloadFont(current_font);
   }
@@ -71,19 +77,20 @@ void ox_render_set_font(Font font)
   font_loaded = true;
 }
 
-void ox_render_draw_text(const char* text, int posX, int posY, int fontSize,
-                         Color color)
+void ox_render_draw_text(const char* text, const int posX, const int posY,
+                         const int fontSize, const Color color)
 {
   if (font_loaded) {
-    DrawTextEx(current_font, text, (Vector2){ posX, posY }, fontSize, 1.0f,
-               color);
+    DrawTextEx(current_font, text, (Vector2){ (float)posX, (float)posY },
+               (float)fontSize, 1.0f, color);
   } else {
     DrawText(text, posX, posY, fontSize, color);
   }
 }
 
-void ox_render_draw_text_ex(Font font, const char* text, Vector2 position,
-                            float fontSize, float spacing, Color tint)
+void ox_render_draw_text_ex(const Font font, const char* text,
+                            const Vector2 position, const float fontSize,
+                            const float spacing, const Color tint)
 {
   DrawTextEx(font, text, position, fontSize, spacing, tint);
 }

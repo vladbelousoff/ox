@@ -4,6 +4,7 @@
 #include "ox_render.h"
 
 #include <math.h>
+#include <raylib-nuklear.h>
 #include <raylib.h>
 
 #define GRID_SIZE          50
@@ -154,6 +155,9 @@ int main(void)
     return (int)ret_code;
   }
 
+  struct nk_context* ctx = InitNuklearEx(ox_render_get_current_font(),
+                                         (float)ox_render_get_font_size());
+
   static const int number_of_balls = NUMBER_OF_BALLS;
   static const float ball_radius = BALL_RADIUS;
 
@@ -195,6 +199,26 @@ int main(void)
   }
 
   while (!WindowShouldClose()) {
+    UpdateNuklear(ctx);
+
+    if (nk_begin(ctx, "Nuklear 1", nk_rect(100, 100, 220, 220),
+                 NK_WINDOW_BORDER | NK_WINDOW_MOVABLE | NK_WINDOW_CLOSABLE)) {
+      nk_layout_row_static(ctx, 50, 150, 1);
+      if (nk_button_label(ctx, "Button")) {
+        // Button was clicked!
+      }
+    }
+    nk_end(ctx);
+
+    if (nk_begin(ctx, "Nuklear 2", nk_rect(100, 400, 220, 220),
+                 NK_WINDOW_BORDER | NK_WINDOW_MOVABLE | NK_WINDOW_CLOSABLE)) {
+      nk_layout_row_static(ctx, 50, 150, 1);
+      if (nk_button_label(ctx, "Button")) {
+        // Button was clicked!
+      }
+    }
+    nk_end(ctx);
+
     const float delta_time = GetFrameTime();
 
     // Update ball positions
@@ -288,8 +312,12 @@ int main(void)
     }
 
     ox_render_draw_text(TextFormat("FPS: %d", GetFPS()), 10, 10, 20, WHITE);
+
+    DrawNuklear(ctx);
     EndDrawing();
   }
+
+  DrawNuklear(ctx);
 
   // Cleanup
   for (int i = 0; i < total_cells; ++i) {

@@ -287,7 +287,7 @@ int main(void)
       DrawLine(0, y, GetScreenWidth(), y, DARKGRAY);
     }
 
-    DrawText(TextFormat("FPS: %d", GetFPS()), 10, 10, 20, WHITE);
+    ox_render_draw_text(TextFormat("FPS: %d", GetFPS()), 10, 10, 20, WHITE);
     EndDrawing();
   }
 
